@@ -6,10 +6,12 @@ const ItemCount = (props) => {
     const stock = 2;
 
     const handleClick = () => {
+        if(contador < stock)
         setContador(contador + 1)
     }
 
     const restar = () => {
+        if(contador > 1)
         setContador(contador - 1)
     }
 
