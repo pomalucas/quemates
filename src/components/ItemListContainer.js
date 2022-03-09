@@ -1,17 +1,41 @@
-import React from 'react';
-import ItemCount from './ItemCount';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
+import ItemList from './ItemList';
+import Item from './Item';
 
 const ItemListContainer = (props) => {
 
-    const onAdd = () => {
-        console.log("Agregado al carrito");
-    }
+    const [loading, setLoading] = useState(true)
+    const [productos, setProductos] = useState([])
+
+    useEffect(()=>{
+        
+        const productosPromesa = new Promise((res,rej)=>{
+            setTimeout(()=>{
+                res(productos)
+            },2000)
+        })
+
+        productosPromesa
+        .then((respuestaDeLaApi)=>{
+            setProductos(productos)
+        })
+        .catch((errorDeLaApi)=>{
+            console.log(errorDeLaApi)
+        })
+        .finally(()=>{
+            setLoading(false)
+        })
+
+    })
 
     return (
-        <div>
-            <h2>{props.greeting}</h2>
-            <ItemCount initial={1} stock={5} onAdd={onAdd} />
-        </div>
+        <section className='itemListContainer'>
+            <p>La cantidad de productos es : 0</p>
+            <p>{loading ? "Cargando..." : "Ya tenes los productos"}</p>
+            <ItemList productos={productos} />
+            <Item />
+        </section>
     )
 }
 
