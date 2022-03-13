@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import ItemList from './ItemList';
-import Item from './Item';
 
 const ItemListContainer = (props) => {
 
@@ -34,7 +33,6 @@ const ItemListContainer = (props) => {
             <p>La cantidad de productos es : 0</p>
             <p>{loading ? "Cargando..." : "Ya tenes los productos"}</p>
             <ItemList productos={productos} />
-            <Item />
         </section>
     )
 }

@@ -1,26 +1,13 @@
 import React from 'react'
 
-const Item = () => {
-
-    let productos = [
-        {
-            id: 1,
-            nombre: "Mate Imperial",
-            precio: 3500
-        },
-        {
-            id: 2,
-            nombre: "Mate Alpaca",
-            precio: 4000
-        },
-    ]
-
+export const Item = ({producto}) => {
+    console.log(producto)
     return (
         <li>
             <div>
-                <h3>{productos.nombre}</h3>
-                <p>{productos.descripcion}</p>
-                <p>{productos.precio}</p>
+                <h3>{producto.nombre}</h3>
+                <p>{producto.descripcion}</p>
+                <p>{producto.precio}</p>
             </div>
         </li>
     )
