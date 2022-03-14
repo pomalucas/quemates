@@ -30,7 +30,7 @@ const ItemListContainer = (props) => {
 
     return (
         <section className='itemListContainer'>
-            <p>La cantidad de productos es : 0</p>
+            <p>La cantidad de productos es : 1</p>
             <p>{loading ? "Cargando..." : "Ya tenes los productos"}</p>
             <ItemList productos={productos} />
         </section>

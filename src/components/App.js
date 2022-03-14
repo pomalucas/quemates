@@ -4,6 +4,7 @@ import Footer from "./Footer"
 import Main from "./Main"
 import NavBar from "./NavBar"
 import ItemListContainer from './ItemListContainer'
+import ItemDetailContainer from './ItemDetailContainer';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
             <NavBar />
                 <ItemListContainer/>
             <Main nombre="Lucas" apellido="Poma" usuarios={usuarios}>
+            <ItemDetailContainer />
             </Main>
             <Footer />
         </>
