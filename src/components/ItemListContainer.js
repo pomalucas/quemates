@@ -1,39 +1,44 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import ItemList from './ItemList';
+import { useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
+import { toast } from "react-toastify"
+import ItemList from "./ItemList"
 
-const ItemListContainer = (props) => {
+const ItemListContainer = () => {
 
-    const [loading, setLoading] = useState(true)
     const [productos, setProductos] = useState([])
-
-    useEffect(()=>{
+    const [loading, setLoading] = useState(true)
+    const {id} = useParams()
+    
+    
+    useEffect(() => {
         
-        const productosPromesa = new Promise((res,rej)=>{
-            setTimeout(()=>{
+        const promesa = new Promise((res, rej) => {
+            setTimeout(() => {
+                console.log(id)
+                //if(id){
                 res(productos)
-            },2000)
+                //rej(productosIniciales)
+            }, 3000)
         })
 
-        productosPromesa
-        .then((respuestaDeLaApi)=>{
-            setProductos(productos)
-        })
-        .catch((errorDeLaApi)=>{
-            console.log(errorDeLaApi)
-        })
-        .finally(()=>{
-            setLoading(false)
-        })
+        promesa
+            .then((respuestaDeLaApi) => {
+                setProductos(productos)
+            })
+            .catch((errorDeLaApi) => {
+                toast.error("Error al cargar los productos")
+            })
+            .finally(() => {
+                setLoading(false)
+            })
 
-    })
+    },[id])
 
     return (
-        <section className='itemListContainer'>
-            <p>La cantidad de productos es : 1</p>
+        <>
             <p>{loading ? "Cargando..." : "Ya tenes los productos"}</p>
-            <ItemList productos={productos} />
-        </section>
+            <ItemList productos={productos}/>
+        </>
     )
 }
 

@@ -1,12 +1,20 @@
-const Main = (props) => {
+import { Route, Routes } from "react-router-dom";
+import ItemListContainer from "./ItemListContainer";
+import ItemDetailContainer from "./ItemDetailContainer";
+import CartWidget from './CartWidget';
 
-    console.log(props)
+const Main = (props) => {
 
     return (
         <main className="container">
-            {props.children}
+            <Routes>
+                <Route path="/" element={<ItemListContainer/>}/>
+                <Route path="/categoria/:id" element={<ItemListContainer/>}/>
+                <Route path="/carrito" element={<CartWidget/>}/>
+                <Route path="/item/:id" element={<ItemDetailContainer/>}/>
+            </Routes>
         </main>
-    )
+    );
 }
 
-export default Main
+export default Main;
