@@ -3,23 +3,27 @@ import Header from "./Header"
 import Footer from "./Footer"
 import Main from "./Main"
 import NavBar from "./NavBar"
+import { Route, Routes } from "react-router-dom";
 import ItemListContainer from './ItemListContainer'
 import ItemDetailContainer from './ItemDetailContainer';
+import CartWidget from './CartWidget';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
 
-    const usuarios = ["Juan", "Pedro", "Maria"]
-
     return (
-        <>
+        <BrowserRouter>
             <Header />
             <NavBar />
-                <ItemListContainer/>
-            <Main nombre="Lucas" apellido="Poma" usuarios={usuarios}>
-            <ItemDetailContainer />
-            </Main>
+            <Routes>
+                <Route path="/" element={<ItemListContainer/>}/>
+                <Route path="/categoria/:id" element={<ItemListContainer/>}/>
+                <Route path="/carrito" element={<CartWidget/>}/>
+                <Route path="/item/:id" element={<ItemDetailContainer/>}/>
+            </Routes>
+            <Main />
             <Footer />
-        </>
+        </BrowserRouter>
     )
 }
 

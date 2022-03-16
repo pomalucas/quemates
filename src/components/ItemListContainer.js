@@ -9,15 +9,12 @@ const ItemListContainer = () => {
     const [loading, setLoading] = useState(true)
     const {id} = useParams()
     
-    
     useEffect(() => {
         
         const promesa = new Promise((res, rej) => {
             setTimeout(() => {
                 console.log(id)
-                //if(id){
                 res(productos)
-                //rej(productosIniciales)
             }, 3000)
         })
 

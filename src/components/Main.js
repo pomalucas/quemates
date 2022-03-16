@@ -6,13 +6,8 @@ import CartWidget from './CartWidget';
 const Main = (props) => {
 
     return (
-        <main className="container">
-            <Routes>
-                <Route path="/" element={<ItemListContainer/>}/>
-                <Route path="/categoria/:id" element={<ItemListContainer/>}/>
-                <Route path="/carrito" element={<CartWidget/>}/>
-                <Route path="/item/:id" element={<ItemDetailContainer/>}/>
-            </Routes>
+        <main>
+            <ItemDetailContainer/>
         </main>
     );
 }
