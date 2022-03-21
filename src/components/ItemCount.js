@@ -1,9 +1,7 @@
 import {useState} from "react"
 
-const ItemCount = (props) => {
-    const [contador, setContador] = useState(props.initial)
-
-    const stock = 2;
+const ItemCount = ({stock,initial,onAdd}) => {
+    const [contador, setContador] = useState(initial)
 
     const handleClick = () => {
         if(contador < stock)
@@ -19,11 +17,16 @@ const ItemCount = (props) => {
         setContador(0)
     }
 
+    const handleConfirmar = () => {
+        onAdd(contador)
+    }
+
     return (
         <div>
             <p className="count">Mi stock es {stock}</p>
             <p>Mi contador actual : {contador}</p>
             <button onClick={handleClick}>aumentar</button>
+            <button onClick={handleConfirmar}>confirmar</button>
             <button onClick={resetear}>resetear</button>
             <button onClick={restar}>restar</button>
         </div>
