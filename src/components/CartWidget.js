@@ -5,7 +5,7 @@ const CartWidget = () => {
 
     return (
         <div>
-            <FontAwesomeIcon icon={faShoppingCart} />
+            0<FontAwesomeIcon icon={faShoppingCart} />
         </div>
     )
 }

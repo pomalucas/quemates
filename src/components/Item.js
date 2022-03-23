@@ -1,16 +1,25 @@
-import React from 'react'
+import { Link } from 'react-router-dom';
 
-export const Item = ({producto}) => {
-    console.log(producto)
+const Item = ({ product }) => {
     return (
-        <li>
+        <div
+            style={{
+                margin: '10px',
+                border: '1px solid black',
+                borderRadius: '5px',
+                padding: '5px',
+            }}
+        >
+            <img src={product.img} alt={product.nombre} width={200} />
             <div>
-                <h3>{producto.nombre}</h3>
-                <p>{producto.descripcion}</p>
-                <p>{producto.precio}</p>
+                <h4>{product.nombre}</h4>
+                <h4>$ {product.precio}</h4>
             </div>
-        </li>
-    )
-}
+            <div style={{ marginBottom: '10px' }}>
+                <Link to={`/detail/${product.id}`}>Ver detalle</Link>
+            </div>
+        </div>
+    );
+};
 
-export default Item
+export default Item;
