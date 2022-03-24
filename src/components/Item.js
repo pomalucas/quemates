@@ -1,25 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom"
 
-const Item = ({ product }) => {
-    return (
-        <div
-            style={{
-                margin: '10px',
-                border: '1px solid black',
-                borderRadius: '5px',
-                padding: '5px',
-            }}
-        >
-            <img src={product.img} alt={product.nombre} width={200} />
-            <div>
-                <h4>{product.nombre}</h4>
-                <h4>$ {product.precio}</h4>
-            </div>
-            <div style={{ marginBottom: '10px' }}>
-                <Link to={`/detail/${product.id}`}>Ver detalle</Link>
-            </div>
-        </div>
-    );
-};
+const Item = ({producto}) => {
+  return (
+    <article>
+        <h2>{producto.nombre}</h2>
+        {/* <img src={producto.sprites.other.home.front_default} alt="" />
+        <p>Altura : {producto.height} in</p>
+        <p>Peso : {producto.weight} lb</p>
+        <button>
+          <Link to={`/pokemon/${producto.id}`}>ver detalle</Link>
+        </button> */}
+    </article>
+  )
+}
 
-export default Item;
+export default Item

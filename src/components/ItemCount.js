@@ -1,7 +1,7 @@
 import {useState} from "react"
 
-const ItemCount = ({stock,initial,onAdd}) => {
-    const [contador, setContador] = useState(initial)
+const ItemCount = ({stock,onAdd}) => {
+    const [contador, setContador] = useState(0)
 
     const handleClick = () => {
         if(contador < stock)

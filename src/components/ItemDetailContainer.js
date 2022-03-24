@@ -25,13 +25,13 @@ const ItemDetailContainer = () => {
         };
     }, [id]);
 
-    if (loading) {
-        return <h6>Cargando...</h6>
-    } else {
-        return (
+
+    return (
+        <>
+            <p>{loading ? "Cargando..." : "Ya tenes los productos"}</p>
             <ItemDetail item={item} />
-        )
-    }
-};
+        </>
+    )
+}
 
 export default ItemDetailContainer;
