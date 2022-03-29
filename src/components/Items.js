@@ -20,7 +20,7 @@ const productos = [
     {
         id: 3,
         nombre: "Bombilla Pico De Loro",
-        descripcion: "Mate Premium Alpaca Cincelada Uruguayo Camionero Premium",
+        descripcion: "Bombilla Mate Premium Alpaca Cincelada Uruguayo Camionero Premium",
         img: "https://http2.mlstatic.com/D_NQ_NP_2X_908803-MLA49337868294_032022-F.webp",
         precio: 1000,
         category: "Bombillas",

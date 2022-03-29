@@ -4,6 +4,7 @@ import { toast } from "react-toastify"
 import { db } from "./Firebase"
 import ItemList from "./ItemList"
 import { getDocs, collection , query , where } from "firebase/firestore"
+import Loader from "./Loader"
 
 //getDocs - getDoc - collection - addDoc - updateDoc
 
@@ -19,8 +20,8 @@ const ItemListContainer = () => {
         
         if(!id){
 
-            const pokemonCollection = collection(db, "productos")
-            const documentos = getDocs(pokemonCollection)
+            const productoCollection = collection(db, "productos")
+            const documentos = getDocs(productoCollection)
     
             documentos
             .then(respuesta => setProductos(respuesta.docs.map(doc=>doc.data())))
@@ -29,8 +30,8 @@ const ItemListContainer = () => {
 
         } else {
 
-            const pokemonCollection = collection(db, "productos")
-            const miFiltro = query(pokemonCollection,where("categoria","==",id))
+            const productoCollection = collection(db, "productos")
+            const miFiltro = query(productoCollection,where("categoria","==",id))
             const documentos = getDocs(miFiltro)
 
             documentos
@@ -46,7 +47,7 @@ const ItemListContainer = () => {
 
     return (
         <>
-            <p>{loading ? "Cargando..." : "Ya tenes los productos"}</p>
+            <p>{loading ? <Loader /> : "Ya tenes los productos"}</p>
             <ItemList productos={productos} />
         </>
     )

@@ -13,12 +13,11 @@ const MiProvider = ({children}) => {
         setCarrito([...carrito,{...item,cantidad}])
         setTotal(total + item.precio * cantidad)
         setCantidadActual(cantidadActual + cantidad)
-        console.log("Funciona")
+
     }
 
     const borrarProducto = id => {
-        console.log("Borrando desde el provider",id)
-        console.log(id)
+
     }
 
     const valorDelProvider = {

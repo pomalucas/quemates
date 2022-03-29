@@ -1,22 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const NavBar = () => {
     return (
         <nav>
-            <Link to="/">
-                <h1>Home</h1>
-            </Link>
-            <ul>
-                <Link style={{ margin: '0px 10px' }} to="/category/mates">
-                    Mates
-                </Link>
-                <Link style={{ margin: '0px 10px' }} to="/category/bombillas">
-                    Bombillas
-                </Link>
-            </ul>
+            <NavLink style={{ margin: '0px 10px' }} to="/">Home</NavLink>
+            <NavLink style={{ margin: '0px 10px' }} to="/tipo/Mates">Mates</NavLink>
+            <NavLink style={{ margin: '0px 10px' }} to="/tipo/Bombillas">Bombillas</NavLink>
+            <NavLink style={{ margin: '0px 10px' }} to="/tipo/Yerba">Yerba</NavLink>
+            <NavLink style={{ margin: '0px 10px' }} to="/carrito">Carrito</NavLink>
         </nav>
     );
 };
 
-export default Navbar;
+export default NavBar;

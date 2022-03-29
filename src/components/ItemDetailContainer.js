@@ -56,7 +56,7 @@ const ItemDetailContainer = () => {
                 <img src={item.imagen} alt="" />
                 <p>{item.descripcion}</p>
                 <p>Precio : $ {item.precio}</p>
-                <ItemCount initial={1} stock={5} onAdd={onAdd} />
+                <ItemCount initial={1} stock={item.stock} onAdd={onAdd} />
                 <p>{seleccionado ? "ya se seleccionó algo!" : "No se eligió ninguna cantidad"}</p>
                 {seleccionado ? <Link onClick={handleClick} to="/carrito">carrito</Link> : null}
             </div>
