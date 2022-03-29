@@ -44,10 +44,9 @@ const ItemListContainer = () => {
 
     }, [id])
 
-
     return (
         <>
-            <p>{loading ? <Loader /> : "Ya tenes los productos"}</p>
+            <p>{loading ? <Loader /> : "Tenemos estos productos para vos!"}</p>
             <ItemList productos={productos} />
         </>
     )
