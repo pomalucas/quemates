@@ -1,12 +1,14 @@
-import NavBar from "./NavBar"
+import { Link } from 'react-router-dom';
+import NavBar from './NavBar';
 
-const Header = () => {
+function Header() {
     return (
-        <>
-            <header>
-                <h1>Quemates</h1>
-            </header>
-        </>
+        <header>
+            <Link to="/">
+                <h1>quemates</h1>
+            </Link>
+            <NavBar/>
+        </header>
     )
 }
 

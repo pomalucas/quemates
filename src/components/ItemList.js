@@ -1,14 +1,25 @@
-import React from 'react'
 import Item from "./Item"
 
-const ItemList = ({products}) => {
+const ItemList = ({ productos }) => {
     return (
-        <ul>
-            {products.map((producto) => (
-                <Item key={producto.id} producto={producto} />
-            ))}
-        </ul>
-    )
-}
+        <div
+            style={{
+                display: 'flex',
+                justifyContent: 'space-around',
+                margin: '30px',
+                border: '3px solid pink',
+                backgroundColor: 'pink',
+                borderRadius: '5px',
+                padding: '10px',
+            }}
+        >
+            <section className="productos">
+                {productos.map((producto) => {
+                    return <Item key={producto.id} producto={producto} />
+                })}
+            </section>
+            </div>
+    );
+};
 
-export default ItemList
+            export default ItemList

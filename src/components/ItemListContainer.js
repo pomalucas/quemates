@@ -3,61 +3,43 @@ import { useParams } from "react-router-dom"
 import { toast } from "react-toastify"
 import { db } from "./Firebase"
 import ItemList from "./ItemList"
-import {getDocs , collection} from "firebase/firestore"
+import { getDocs, collection , query , where } from "firebase/firestore"
+
+//getDocs - getDoc - collection - addDoc - updateDoc
 
 const ItemListContainer = () => {
 
     const [productos, setProductos] = useState([])
     const [loading, setLoading] = useState(true)
-    const {id} = useParams()
+    const { id } = useParams()
+
+    console.log(id)
 
     useEffect(() => {
+        
+        if(!id){
 
-        const productoCollection = collection(db, "productos")
-        const documentos = getDocs(productoCollection)
+            const pokemonCollection = collection(db, "productos")
+            const documentos = getDocs(pokemonCollection)
+    
+            documentos
+            .then(respuesta => setProductos(respuesta.docs.map(doc=>doc.data())))
+            .catch(error => toast.error("Error al obtener los productos"))
+            .finally(() => setLoading(false))
 
-        documentos
-            .then((respuesta) => {
+        } else {
 
-                const aux = []
+            const pokemonCollection = collection(db, "productos")
+            const miFiltro = query(pokemonCollection,where("categoria","==",id))
+            const documentos = getDocs(miFiltro)
 
-                respuesta.forEach((documento) => {
-                    /* console.log(documento.data())
-                    console.log(documento.id) */
-                    const producto = {
-                        id: documento.id,
-                        ...documento.data()
-                    }
-                    aux.push(producto)
-                })
+            documentos
+            .then(respuesta => setProductos(respuesta.docs.map(doc=>doc.data())))
+            .catch(error => toast.error("Error al obtener los productos"))
+            .finally(() => setLoading(false))
+            
+        }
 
-                console.log(aux)
-                setProductos(aux)
-            })
-            .catch(() => {
-                toast.error("Error al traer los productos")
-            })
-
-
-        /* const promesa = new Promise((res, rej) => {
-            setTimeout(() => {
-                console.log(id)
-                res(productos)
-            }, 3000)
-        })
-
-        promesa
-            .then((respuestaDeLaApi) => {
-                setProductos(productos)
-            })
-            .catch((errorDeLaApi) => {
-                toast.error("Error al cargar los productos")
-            })
-            .finally(() => {
-                setLoading(false)
-            })
-
-             */
 
     }, [id])
 

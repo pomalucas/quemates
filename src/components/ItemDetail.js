@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CartContext } from './CartContext';
+import { contexto } from './CartContext';
 import ItemCount from './ItemCount';
 
 const ItemDetail = ({ item }) => {
     const [cantidad, setCantidad] = useState(0);
 
-    const { addToCart } = useContext(CartContext);
+    const { addToCart } = useContext(contexto);
 
     const onAdd = (cantidad) => {
         setCantidad(cantidad);
@@ -25,7 +25,7 @@ const ItemDetail = ({ item }) => {
                 padding: '10px',
             }}
         >
-            <img src={item.img} alt={item.nombre} width={400} />
+            <img src={item.imagen} alt={item.nombre} width={400} />
             <div>
                 <h2>{item.nombre}</h2>
                 <h3>$ {item.precio}</h3>

@@ -1,62 +1,38 @@
-import React, { useState } from 'react';
+import { createContext, useState } from "react";
 
-export const CartContext = React.createContext();
+export const contexto = createContext()
+const {Provider} = contexto
 
-export const CartContextProvider = ({ children }) => {
-    const [cart, setCart] = useState([]);
+const MiProvider = ({children}) => {
 
-    const addToCart = (item, cantidad) => {
-        isOnCart(item.id)
-            ? sumarCantidad(item, cantidad)
-            : setCart([...cart, { ...item, cantidad }]);
-    };
+    const [carrito,setCarrito] = useState([])
+    const [total,setTotal] = useState(0)
+    const [cantidadActual,setCantidadActual] = useState(0)
 
-    const isOnCart = (id) => {
-        return cart.some((prod) => prod.id === id);
-    };
+    const agregarProducto = (item,cantidad) => {
+        setCarrito([...carrito,{...item,cantidad}])
+        setTotal(total + item.precio * cantidad)
+        setCantidadActual(cantidadActual + cantidad)
+        console.log("Funciona")
+    }
 
-    const sumarCantidad = (item, cantidad) => {
-        const newProducts = cart.map((prod) => {
-            if (prod.id === item.id) {
-                const newProduct = {
-                    ...prod,
-                    cantidad: prod.cantidad + cantidad,
-                };
-                return newProduct;
-            } else {
-                return prod;
-            }
-        });
-        setCart(newProducts);
-    };
+    const borrarProducto = id => {
+        console.log("Borrando desde el provider",id)
+        console.log(id)
+    }
 
-    const vaciarCarrito = () => {
-        setCart([]);
-    };
-
-    const calcularTotal = () => {
-        let totalCarrito = 0;
-        cart.forEach((prod) => {
-            totalCarrito += prod.price * prod.cantidad;
-        });
-        return totalCarrito;
-    };
-
-    const borrarProd = (id) => {
-        setCart(cart.filter((prod) => prod.id !== id));
-    };
+    const valorDelProvider = {
+        carrito ,
+        borrarProducto,
+        agregarProducto,
+        total
+    }
 
     return (
-        <CartContext.Provider
-            value={{
-                cart,
-                addToCart,
-                vaciarCarrito,
-                calcularTotal,
-                borrarProd,
-            }}
-        >
+        <Provider value={valorDelProvider}>
             {children}
-        </CartContext.Provider>
-    );
-};
+        </Provider>
+    )
+}
+
+export default MiProvider

@@ -1,4 +1,4 @@
-const products = [
+const productos = [
     {
         id: 1,
         nombre: "Mate Imperial Uruguayo Camionero Premium",
@@ -30,16 +30,16 @@ const products = [
 
 export const traerProductos = (id) => {
     return new Promise((resolve, reject) => {
-        const itemFiltrados = products.filter((prod) => prod.category === id);
+        const itemFiltrados = productos.filter((prod) => prod.category === id);
         setTimeout(() => {
-            id ? resolve(itemFiltrados) : resolve(products);
+            id ? resolve(itemFiltrados) : resolve(productos);
         }, 1000);
     });
 };
 
 export const traerProducto = (id) => {
     return new Promise((resolve, reject) => {
-        const item = products.find((prod) => prod.id === parseInt(id));
+        const item = productos.find((prod) => prod.id === parseInt(id));
         setTimeout(() => {
             resolve(item);
         }, 1000);

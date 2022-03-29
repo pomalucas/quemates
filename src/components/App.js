@@ -1,29 +1,23 @@
-import ItemListContainer from './ItemListContainer';
-import ItemDetailContainer from './ItemDetailContainer';
-import Navbar from './NavBar';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { CartContextProvider } from './CartContext';
+import Header from "./Header"
+import Footer from "./Footer"
+import Main from "./Main"
+import { ToastContainer } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
+import { BrowserRouter } from "react-router-dom";
+import MiProvider from "./CartContext";
+import NavBar from './NavBar';
 
 function App() {
-
     return (
-        <CartContextProvider>
+        <MiProvider>
             <BrowserRouter>
-                <Navbar />
-                <Routes>
-                    <Route path="/" element={<ItemListContainer />} />
-                    <Route
-                        path="/category/:categoryId"
-                        element={<ItemListContainer />}
-                    />
-                    <Route
-                        path="/detail/:id"
-                        element={<ItemDetailContainer />}
-                    />
-                </Routes>
+                <Header />
+                <Main />
+                <Footer />
+                <ToastContainer />
             </BrowserRouter>
-        </CartContextProvider>
-    );
+        </MiProvider>
+    )
 }
 
 export default App
