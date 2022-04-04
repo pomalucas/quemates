@@ -5,7 +5,6 @@ import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter } from "react-router-dom";
 import MiProvider from "./CartContext";
-import NavBar from './NavBar';
 
 function App() {
     return (

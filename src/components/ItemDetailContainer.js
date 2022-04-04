@@ -32,7 +32,6 @@ const ItemDetailContainer = () => {
     }, [id])
 
     const onAdd = (unidadSeleccionada) => {
-        console.log("On Add desde el ItemDetailContainer")
         if (unidadSeleccionada != undefined) {
             setSeleccionado(unidadSeleccionada)
         }
@@ -40,7 +39,6 @@ const ItemDetailContainer = () => {
 
     const handleClick = (e) => {
         e.preventDefault()
-        console.log("Click del Link/Boton")
         agregarProducto(item, seleccionado)
         navigate("/carrito")
     }

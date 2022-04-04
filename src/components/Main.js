@@ -3,7 +3,7 @@ import ItemListContainer from "./ItemListContainer";
 import ItemDetailContainer from "./ItemDetailContainer";
 import CartWidget from './CartWidget';
 
-const Main = ({nombre,apellido}) => {
+const Main = ({}) => {
     return (
         <main className="container">
             <Routes>

@@ -17,7 +17,10 @@ const MiProvider = ({children}) => {
     }
 
     const borrarProducto = id => {
-
+        const nuevoCarrito = carrito.filter(item => item.id !== id)
+        setCarrito(nuevoCarrito)
+        setTotal(total - nuevoCarrito.precio)
+        setCantidadActual(cantidadActual - nuevoCarrito.cantidad)
     }
 
     const valorDelProvider = {
