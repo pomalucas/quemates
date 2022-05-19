@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e0744cae-0065-4894-bda3-39cb20685d12/deploy-status)](https://app.netlify.com/sites/quemates/deploys)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# quemates
 
-## Available Scripts
+## Proyecto final del curso ReactJs de CoderHouse comisión 25470
 
-In the project directory, you can run:
+Sitio Web: [quemates.netlify.app](https://quemates.netlify.app/)
 
-### `npm start`
+Soy Lucas Poma, realicé este proyecto para el curso de React de CoderHouse.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Se usó firestore como base de datos, que es un servicio de Firebase, para persistir los productos que se muestran y sus datos, además de las ordenes de compra que se generan.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Características
 
-### `npm test`
+- Navegabilidad entre catalogo completo, filtrado por categorias, ordenadas por precio y detalle individual del producto.
+- Botón de agregar al carrito para varios items con control según stock.
+- Cada producto tiene una etiqueta que al ser seleccionada filtra por categoria y muestra los productos que pertenecen a ella.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Instalación y manejo de la app con comandos
 
-### `npm run build`
+Primero hay que clonar el repositorio:
+>`git clone https://github.com/pomalucas/quemates.git`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Luego moverse a la carpeta e-commerce
+>`cd quemates`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Después instalar npm:
+>`npm install`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Luego hacer:
+>`npm run start` 
 
-### `npm run eject`
+y la app estará corriendo.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Dependencias instaladas:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  *  firebase v 9.6.9: a modo de base de datos de los productos.
+  *  react-router-dom v 6.2.2: para navegación. 
+  *  react-toastify v 8.2.0: para proporcionar notificaciones al usuario.

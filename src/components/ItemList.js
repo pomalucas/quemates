@@ -1,14 +1,16 @@
-import Item from "./Item"
+import React from 'react'
+import { Item } from './Item'
+import "./itemlist.css"
 
-const ItemList = ({ productos }) => {
+export const ItemList = ({ productos }) => {
 
     return (
-        <section className="productos">
-            {productos.map((producto) => {
-                return <Item key={producto.id} producto={producto} />
-            })}
-        </section>
-    );
-};
-
-export default ItemList
+        <ul className='itemlist'>
+            {
+                productos.map((producto, index) => {
+                    return <Item key={index} producto={producto} />
+                })
+            }
+        </ul>
+    )
+}

@@ -1,55 +1,44 @@
-import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
+import { ItemList } from './ItemList';
+import "./itemlistcontainer.css"
+import { getDocs, query, collection, where } from "firebase/firestore"
+import { db } from './Firebase';
 import { toast } from "react-toastify"
-import { db } from "./Firebase"
-import ItemList from "./ItemList"
-import { getDocs, collection , query , where } from "firebase/firestore"
-import Loader from "./Loader"
 
-//getDocs - getDoc - collection - addDoc - updateDoc
-
-const ItemListContainer = () => {
+export const ItemListContainer = ({ greeting }) => {
 
     const [productos, setProductos] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [setLoading] = useState(true)
     const { id } = useParams()
 
-    console.log(id)
-
     useEffect(() => {
-        
-        if(!id){
 
-            const productoCollection = collection(db, "productos")
-            const documentos = getDocs(productoCollection)
-    
-            documentos
-            .then(respuesta => setProductos(respuesta.docs.map(doc=>doc.data())))
-            .catch(error => toast.error("Error al obtener los productos"))
-            .finally(() => setLoading(false))
+        if (id) {
+
+            const q = query(collection(db, "productos"), where("categoria", "==", id))
+
+            getDocs(q)
+                .then((resp) => setProductos(resp.docs.map(p => ({ productos: p.data(), id: p.id }))))
+                .catch(error => toast.error("Error al obtener los productos"))
 
         } else {
 
-            const productoCollection = collection(db, "productos")
-            const miFiltro = query(productoCollection,where("categoria","==",id))
-            const documentos = getDocs(miFiltro)
+            getDocs(collection(db, "productos"))
+                .then((resp) => setProductos(resp.docs.map(p => ({ productos: p.data(), id: p.id }))))
+                .catch(error => toast.error("Error al obtener los productos"))
+                .finally(() => setLoading(false))
 
-            documentos
-            .then(respuesta => setProductos(respuesta.docs.map(doc=>doc.data())))
-            .catch(error => toast.error("Error al obtener los productos"))
-            .finally(() => setLoading(false))
-            
         }
-
-
     }, [id])
 
     return (
-        <>
-            <p>{loading ? <Loader /> : "Tenemos estos productos para vos!"}</p>
+        <section className='itemlistcontainer'>
+            <h2>
+                {greeting}
+            </h2>
+            <p>{"Tenemos estos productos para vos!"}</p>
             <ItemList productos={productos} />
-        </>
+        </section>
     )
 }
-
-export default ItemListContainer

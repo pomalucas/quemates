@@ -1,42 +1,45 @@
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { contexto } from './CartContext';
-import ItemCount from './ItemCount';
+import React, { useContext } from 'react'
+import { cartContext } from './CartContext'
+import { ItemCount } from './ItemCount'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import "./itemdetail.css"
 
-const ItemDetail = ({ item }) => {
-    const [cantidad, setCantidad] = useState(0);
+export const ItemDetail = ({ producto }) => {
 
-    const { addToCart } = useContext(contexto);
+    const { addItem } = useContext(cartContext)
 
-    const onAdd = (cantidad) => {
-        setCantidad(cantidad);
-        addToCart(item, cantidad);
-    };
+    const notify = (cantidadElegida) => toast(`la cantidad añadida al carrito es ${cantidadElegida}`);
+
+    const handleAdd = (cantidadElegida = 1) => {
+
+        addItem(producto, cantidadElegida)
+        notify(cantidadElegida)
+    }
 
     return (
-        <div
-            style={{
-                display: 'flex',
-                justifyContent: 'space-around',
-                margin: '30px',
-                border: '3px solid pink',
-                backgroundColor: 'pink',
-                borderRadius: '5px',
-                padding: '10px',
-            }}
-        >
-            <img src={item.imagen} alt={item.nombre} width={400} />
-            <div>
-                <h2>{item.nombre}</h2>
-                <h3>$ {item.precio}</h3>
-                {cantidad === 0 ? (
-                    <ItemCount stock={item.stock} onAdd={onAdd} />
-                ) : (
-                    <Link to="/cart">Ir al carrito</Link>
-                )}
+        <>
+            <div className='itemdetail'>
+                {
+                    producto ?
+                        <>
+                            <img src={producto.imagen} />
+                            <div className='itemdetail-producto'>
+                                <h2 className='itemdetail-producto-nombre'>{producto.nombre}</h2>
+                                <p className='itemdetail-producto-precio'>$ {producto.precio}</p>
+                                <p className='itemdetail-producto-descripcion'>{producto.descripcion}</p>
+                                <p className='itemdetail-producto-stock'>Stock: {producto.stock}</p>
+                                <ItemCount initial={1} stock={producto.stock} onAdd={handleAdd} />
+                            </div>
+                        </>
+                        :
+                        <span>Cargando...</span>
+                }
             </div>
-        </div>
-    );
-};
+            <div>
+                <ToastContainer />
+            </div>
+        </>
 
-export default ItemDetail;
+    )
+}

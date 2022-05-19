@@ -1,36 +1,34 @@
-import {useState} from "react"
+import React, { useState } from 'react'
+import "./itemcount.css"
 
-const ItemCount = ({stock,onAdd}) => {
-    const [contador, setContador] = useState(0)
+export const ItemCount = ({ initial = 1, stock, onAdd }) => {
 
-    const handleClick = () => {
-        if(contador < stock)
-        setContador(contador + 1)
+    const [count, setCount] = useState(initial)
+
+    const agregar = () => {
+        if (count < stock) {
+            setCount(count + 1);
+        }
     }
 
     const restar = () => {
-        if(contador > 1)
-        setContador(contador - 1)
-    }
-
-    const resetear = () => {
-        setContador(0)
-    }
-
-    const handleConfirmar = () => {
-        onAdd(contador)
+        if (count > initial) {
+            setCount(count - 1)
+        }
     }
 
     return (
-        <div>
-            <p className="count">Stock : {stock}</p>
-            <p>Cantidad seleccionada : {contador}</p>
-            <button onClick={handleClick}>aumentar</button>
-            <button onClick={handleConfirmar}>confirmar</button>
-            <button onClick={resetear}>resetear</button>
-            <button onClick={restar}>restar</button>
+        <div className='itemcount'>
+            <div className='itemcount__display-count'>
+                <i onClick={restar} className="fas fa-minus itemcount__btn"></i>
+                <span>
+                    {count}
+                </span>
+                <i onClick={agregar} className="fas fa-plus itemcount__btn"></i>
+            </div>
+            <button onClick={() => onAdd(count)} className='itemcount__add'>
+                Agregar al carrito
+            </button>
         </div>
-    );
+    )
 }
-
-export default ItemCount

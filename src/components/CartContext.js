@@ -1,40 +1,60 @@
-import { createContext, useState } from "react";
+import React, { useEffect, useState } from 'react'
 
-export const contexto = createContext()
-const {Provider} = contexto
+export const cartContext = React.createContext()
 
-const MiProvider = ({children}) => {
+export const CartContext = ({ children }) => {
 
-    const [carrito,setCarrito] = useState([])
-    const [total,setTotal] = useState(0)
-    const [cantidadActual,setCantidadActual] = useState(0)
+    const { Provider } = cartContext
+    const [cart, setCart] = useState([])
+    const [total, setTotal] = useState(0)
 
-    const agregarProducto = (item,cantidad) => {
-        setCarrito([...carrito,{...item,cantidad}])
-        setTotal(total + item.precio * cantidad)
-        setCantidadActual(cantidadActual + cantidad)
+    let cartProductAux = []
 
+    useEffect(() => {
+        checkTotal()
+    }, [cart])
+
+    const addItem = (item, quantity) => {
+
+        let cartProduct = { item, quantity };
+
+        if (isInCart(item)) {
+            cartProduct = cart.find(p => p.item.id === item.id)
+            cartProduct.quantity = cartProduct.quantity + quantity;
+            cartProductAux = [...cart]
+        } else {
+            cartProductAux = [...cart, cartProduct]
+        }
+        setCart(cartProductAux)
     }
 
-    const borrarProducto = id => {
-        const nuevoCarrito = carrito.filter(item => item.id !== id)
-        setCarrito(nuevoCarrito)
-        setTotal(total - nuevoCarrito.precio)
-        setCantidadActual(cantidadActual - nuevoCarrito.cantidad)
+    const removeItem = (id) => {
+        cartProductAux = cart.filter(p => p.item.id !== id)
+        console.log(cartProductAux)
+        setCart(cartProductAux)
     }
 
-    const valorDelProvider = {
-        carrito ,
-        borrarProducto,
-        agregarProducto,
-        total
+    const clear = () => {
+        setCart([])
+    }
+
+    const checkTotal = () => {
+        let totalAux = 0
+        cart.map(p => {
+            totalAux = totalAux + (p.item.precio * p.quantity);
+        })
+        setTotal(totalAux)
+    }
+
+
+    const isInCart = (item) => {
+        const result = cart.some(p => p.item.id == item.id)
+        return result
     }
 
     return (
-        <Provider value={valorDelProvider}>
+        <Provider value={{ cart, addItem, clear, removeItem, total }}>
             {children}
         </Provider>
     )
 }
-
-export default MiProvider
