@@ -7,8 +7,24 @@
 
 .itemdetail img {
     flex: 0.4 1;
-    width: 10%;
+    width: 50%;
     height: 100%;
+}
+
+@media only screen and (max-width: 400px) {
+    .itemdetail img {
+        flex: 0.4 1;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+    .itemdetail img {
+        flex: 0.4 1;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .itemdetail-producto {
