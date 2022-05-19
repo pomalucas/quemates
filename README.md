@@ -21,7 +21,7 @@ Se usó firestore como base de datos, que es un servicio de Firebase, para persi
 Primero hay que clonar el repositorio:
 >`git clone https://github.com/pomalucas/quemates.git`
 
-Luego moverse a la carpeta e-commerce
+Luego moverse a la carpeta "quemates"
 >`cd quemates`
 
 Después instalar npm:
