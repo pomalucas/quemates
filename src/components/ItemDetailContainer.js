@@ -5,6 +5,7 @@ import { ItemDetail } from './ItemDetail';
 import "./itemdetailcontainer.css"
 import { query, getDocs, getDoc, doc, collection, where } from "firebase/firestore"
 import { db } from './Firebase';
+import Loader from './Loader';
 
 export const ItemDetailContainer = () => {
 
@@ -26,9 +27,13 @@ export const ItemDetailContainer = () => {
             .then((res) => setProducto(res.data()))
     }, [id])
 
-    return (
-        <div className='itemdetailcontainer'>
-            <ItemDetail producto={producto} />
-        </div>
-    )
+    if (loading) {
+        return <Loader />
+    } else {
+        return (
+            <div className='itemdetailcontainer'>
+                <ItemDetail producto={producto} />
+            </div>
+        )
+    }
 }

@@ -5,12 +5,14 @@ import "./itemlistcontainer.css"
 import { getDocs, query, collection, where } from "firebase/firestore"
 import { db } from './Firebase';
 import { toast } from "react-toastify"
+import Loader from './Loader';
 
 export const ItemListContainer = ({ greeting }) => {
 
     const [productos, setProductos] = useState([])
-    const [setLoading] = useState(true)
+    const [loading, setLoading] = useState(true)
     const { id } = useParams()
+
 
     useEffect(() => {
 
@@ -37,7 +39,7 @@ export const ItemListContainer = ({ greeting }) => {
             <h2>
                 {greeting}
             </h2>
-            <p>{"Tenemos estos productos para vos!"}</p>
+            <p>{loading ? <Loader /> : "Tenemos estos productos para vos!"}</p>
             <ItemList productos={productos} />
         </section>
     )
