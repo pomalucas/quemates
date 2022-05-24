@@ -37,3 +37,4 @@ y la app estará corriendo.
   *  firebase v 9.6.9: a modo de base de datos de los productos.
   *  react-router-dom v 6.2.2: para navegación. 
   *  react-toastify v 8.2.0: para proporcionar notificaciones al usuario.
+  *  animate.css v 4.1.1: para animación al loader.
